@@ -1,8 +1,8 @@
 # tecnicasDeProgramacao-UAM
 
 ## arquivos da video aula, da anhembi morumbi .
-projeto 1
-projeto 2
+✔️ projeto 1
+✔️ projeto 2
 
 feitos em IDE codeblocks , no linux e compilando no terminal gnome linux.
 
