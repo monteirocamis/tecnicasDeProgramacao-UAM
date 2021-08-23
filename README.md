@@ -7,6 +7,6 @@ projeto 2
 feitos em IDE codeblocks , no linux e compilando no terminal gnome linux.
 
 ## projetos  no terminal 
-  cd projeto1 <br/>  <br/> 
+  cd projeto1 <br/>
   g++ main.c -o meuprograma  <br/> 
-  ./meuprograma
+  ./meuprograma <br/> 
