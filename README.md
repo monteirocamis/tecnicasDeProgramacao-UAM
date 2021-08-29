@@ -4,14 +4,15 @@
 ✔️ projeto 1 <br/>
 ✔️ projeto 2 <br/>
 ✔️ projeto 3 <br/>
+🚧 projeto 4<br/>
  <br/>
 feitos em IDE codeblocks , no linux com ming
  <br/> <br/>
-### 1 install mingw
+### 1. install mingw
 sudo apt install mingw-w64
 [win-builds.org/doku.php]
 
-### 2 install codeblocks
+### 2. install codeblocks
  sudo apt install mingw-w64
  [https://www.codeblocks.org/downloads/binaries/]
 
