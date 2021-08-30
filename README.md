@@ -1,4 +1,4 @@
-# *tecnicas De Programacao - Universidade Anhembi Morumbi * 
+# *tecnicas de programação - Universidade Anhembi Morumbi * 
  <br/>
 
 ## arquivos de video aula e saiba mais, da anhembi morumbi EAD.
