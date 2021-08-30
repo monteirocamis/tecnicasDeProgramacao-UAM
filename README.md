@@ -1,7 +1,7 @@
 # *tecnicasDeProgramacao-UAM * 
  <br/>
 
-## arquivos da video aula, da anhembi morumbi .
+## arquivos de video aula e saiba mais, da anhembi morumbi EAD.
 <br/>
   
 - ✔️ unid 1 <br/>
