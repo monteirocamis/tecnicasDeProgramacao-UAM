@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1630313325 source:e:\facul\tecnicasdeprogramacao-uam\unid1\matriz\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
