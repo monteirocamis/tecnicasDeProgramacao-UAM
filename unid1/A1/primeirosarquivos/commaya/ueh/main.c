@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <locale.h>
 
 /*
 Com base nisso, suponha que � necess�rio armazenar informa��es relacionadas � ve�culos, totalizando, no m�ximo, 10 ve�culos.
@@ -31,13 +30,6 @@ O sistema dever� armazenar os ve�culos ordenados pelo ano de fabrica��o,
 Refer�ncia DEITEL, P. J.; DEITEL, H. C: Como Programar. 6. ed. S�o Paulo: Pearson Prentice Hall, 2011. [Recurso eletr�nico, Biblioteca Virtual Universit�ri
 */
 
-
-
-    //permite usar acentos - não funcionou!
-//  void locale(){  setlocale(LC_ALL,"");
-//    printf("olá");
-//  }
-
 typedef struct car
 {
     char brand[10];
@@ -46,18 +38,27 @@ typedef struct car
     int year;
 } TP_CAR;
 
+void Menu()
+{
 
-    //**********funçoes**************//
+    printf("\n 1 - Listar veículos.");
+    printf("\n 2 - Cadastrar veículo.");
+    printf("\n 3 - Listar veículo por ano:");
+    printf("\n 4 - Listar veículo a partir do ano:");
+    printf("\n 5 - Listar veículo por modelo:");
+    printf("\n 0 - Sair.");
+    printf("\n Escolha as opções numericas: ");
+}
+
 
 void organizeVehicles(int ind, TP_CAR carros[])
 {
 
     TP_CAR aux;
-    int i;
-    int j;
-    for ( i = 0; i < ind + 1; i++)
+
+    for (int i = 0; i < ind + 1; i++)
     {
-        for ( j = i + 1; j < ind + 1; j++)
+        for (int j = i + 1; j < ind + 1; j++)
         {
             if (carros[i].year > carros[j].year)
             {
@@ -74,7 +75,6 @@ void organizeVehicles(int ind, TP_CAR carros[])
  */
 int insertVehicle(TP_CAR cars[], int carsSize, TP_CAR car)
 {
-   int i;
     // Encontra a posição para inserir
     int pos = 0;
     while (pos < carsSize && cars[pos].year < car.year) {
@@ -82,7 +82,7 @@ int insertVehicle(TP_CAR cars[], int carsSize, TP_CAR car)
     }
 
     // movo todos que devem ficar depois para a direita
-    for ( i = carsSize; i > pos; i--) {
+    for (int i = carsSize; i > pos; i--) {
         cars[i] = cars[i-1];
     }
 
@@ -90,7 +90,7 @@ int insertVehicle(TP_CAR cars[], int carsSize, TP_CAR car)
 
     return carsSize + 1;
 }
- //adiciona veiculos
+
 int addVehicle(TP_CAR cars[], int carsSize)
 {
     if (carsSize >= 10) {
@@ -115,23 +115,22 @@ int addVehicle(TP_CAR cars[], int carsSize)
     return insertVehicle(cars, carsSize, car);
 }
 
- //lista veiculos
+
 void printVehicle(TP_CAR car)
 {
     printf("Veiculo: %s \n Modelo: %s \n Placa: %s \n Ano: %d \n\n  ", car.brand, car.model, car.plate, car.year);
 }
 
 void showVehicles(TP_CAR cars[], int* carsSize)
-{   int i;
-    for ( i = 0; i < *carsSize; i++) {
+{
+    for (int i = 0; i < *carsSize; i++) {
         printVehicle(cars[i]);
     }
 }
 
 int findIndexYear(TP_CAR cars[], int carsSize, int year, int diffIndex) {
-       int i;
     if (carsSize > 0 && carsSize <= 2) {
-        for ( i = 0; i < carsSize; i++) {
+        for (int i = 0; i < carsSize; i++) {
             if (cars[i].year == year) {
                 return i;
             }
@@ -155,7 +154,7 @@ int findIndexYear(TP_CAR cars[], int carsSize, int year, int diffIndex) {
     }
 
 }
-     //mostra por ano
+
 void showVehiclesByYear(TP_CAR cars[], int carsSize) {
     int year;
     printf("Escolha um ano ");
@@ -168,28 +167,30 @@ void showVehiclesByYear(TP_CAR cars[], int carsSize) {
         index++;
     }
 }
-     //mostra por ano escolhido
+
 void showVehiclesFromYear(TP_CAR cars[], int carsSize) {
     int year;
-       int i;
     printf("Escolha um ano ");
     scanf("%d", &year);
     printf("%d\n", year);
 
     int index = findIndexYear(cars, carsSize, year, 0);
-    for ( i = index; i < carsSize; i++) {
+    for (int i = index; i < carsSize; i++) {
         if (cars[i].year >= year)
             printVehicle(cars[i]);
     }
 }
-
-    //mostra por modelo
 void showVehiclesByModel(TP_CAR cars[], int carsSize) {
-
+    for (int i = 0; i<10; i++)
+    {
+        if (strcmp(modeloBusca, car[i].modelo ) == 0)
+        {
+           printf("Veiculo: %s \n Modelo: %s \n Placa: %s \n Ano: %d \n\n  ", car.brand, car.model, car.plate, car.year);
+        }
+    }
 }
 
 
-    //***********menu*********//
 int getChoice()
 {
     int choice;
@@ -206,7 +207,6 @@ int getChoice()
 
 int main()
 {
-
 
     TP_CAR cars[10] = {};
     int carsSize = 0;
@@ -236,7 +236,7 @@ int main()
             case 4:
                 showVehiclesFromYear(cars, carsSize);
                 break;
-            //lista veiculos por modelo
+
             case 5:
                 showVehiclesByModel(cars, carsSize);
                 break;
@@ -244,5 +244,4 @@ int main()
 
         choice = getChoice();
     }
-
 }

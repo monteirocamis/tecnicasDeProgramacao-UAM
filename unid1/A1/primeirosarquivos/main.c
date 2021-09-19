@@ -71,7 +71,7 @@ void Menu() {
 
 
 
-void vehicles(TYPE_CAR car[]) {
+void vehicles(TP_CAR car[]) {
 
     for (int i = 0; i<10; i++) {
 
@@ -81,7 +81,7 @@ void vehicles(TYPE_CAR car[]) {
 
 void organizeVehicles(int in, TP_CAR carros[]){
 
-TYPE_CAR aux;
+TP_CAR aux;
 
 for(int i = 0 ; i< ind +1 ; i++){
     for(int j = i + 1 ; j < ind + 1 ; j++){
