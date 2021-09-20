@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <locale.h>
+#include <strings.h>
 
 /*
 Com base nisso, suponha que � necess�rio armazenar informa��es relacionadas � ve�culos, totalizando, no m�ximo, 10 ve�culos.
@@ -90,7 +91,8 @@ int insertVehicle(TP_CAR cars[], int carsSize, TP_CAR car)
 
     return carsSize + 1;
 }
- //adiciona veiculos
+
+  //[ 2 ] -------adiciona veiculos
 int addVehicle(TP_CAR cars[], int carsSize)
 {
     if (carsSize >= 10) {
@@ -113,23 +115,44 @@ int addVehicle(TP_CAR cars[], int carsSize)
     scanf("%d", &car.year);
 
     return insertVehicle(cars, carsSize, car);
+
+    getChoice(); // volta pro menu
 }
 
- //lista veiculos
-void printVehicle(TP_CAR car)
-{
+
+  //[ 1 ] -------lista veiculos
+void printVehicle(TP_CAR car){
+
+
     printf("Veiculo: %s \n Modelo: %s \n Placa: %s \n Ano: %d \n\n  ", car.brand, car.model, car.plate, car.year);
+
+       //    getChoice(); // volta pro menu
 }
 
-void showVehicles(TP_CAR cars[], int* carsSize)
-{   int i;
+
+
+void showVehicles(TP_CAR cars[], int* carsSize){
+
+
+       int i;
     for ( i = 0; i < *carsSize; i++) {
         printVehicle(cars[i]);
     }
+
+  //  getChoice(); // volta pro menu
 }
 
 int findIndexYear(TP_CAR cars[], int carsSize, int year, int diffIndex) {
+
+
+
        int i;
+
+        if (carsSize == 0)	{
+		printf("\n nao temos veiculos \n");
+	}
+
+
     if (carsSize > 0 && carsSize <= 2) {
         for ( i = 0; i < carsSize; i++) {
             if (cars[i].year == year) {
@@ -149,49 +172,143 @@ int findIndexYear(TP_CAR cars[], int carsSize, int year, int diffIndex) {
     } else if (cars[pivo].year < year) {
         // procuro na segunda metade
         return findIndexYear(cars + (carsSize/2), carsSize/2, year, diffIndex + (carsSize/2));
-    } else {
+    }
+
+    else {
         // procuro na primeira metade
         return findIndexYear(cars, carsSize/2, year, diffIndex);
     }
-
+ // getChoice(); // volta pro menu
 }
-     //mostra por ano
+
+
+
+
+
+    //[ 3 ] -------mostra os veiculos do ano escolhido
+
 void showVehiclesByYear(TP_CAR cars[], int carsSize) {
+    //int printouAlgo = 0;
+
     int year;
     printf("Escolha um ano ");
     scanf("%d", &year);
     printf("%d\n", year);
+
+       if (carsSize == 0) {
+            printf("Nao ha veiculos deste ano \n");
+
+    }
 
     int index = findIndexYear(cars, carsSize, year, 0);
     while (index < carsSize && cars[index].year == year) {
         printVehicle(cars[index]);
         index++;
     }
+
+getChoice(); // volta pro menu
 }
-     //mostra por ano escolhido
+
+
+
+
+     //[ 4 ] ------- mostra a partir do ano escolhido
 void showVehiclesFromYear(TP_CAR cars[], int carsSize) {
     int year;
        int i;
+
+
     printf("Escolha um ano ");
     scanf("%d", &year);
     printf("%d\n", year);
 
+
+     if (carsSize == 0)	{
+		printf("\n nao temos veiculos \n");
+	}
+
+
     int index = findIndexYear(cars, carsSize, year, 0);
+
     for ( i = index; i < carsSize; i++) {
-        if (cars[i].year >= year)
-            printVehicle(cars[i]);
+        if (cars[i].year >= year){
+              printVehicle(cars[i]);
+        }
+
+
     }
+
+
+    getChoice(); // volta pro menu
 }
 
-    //mostra por modelo
+
+
+
+
+
+     //[ 5 ] ------- mostra por modelo
 void showVehiclesByModel(TP_CAR cars[], int carsSize) {
 
+    char searchModel[20];
+    int i = 0;
+    int count = 0;
+
+    printf("escolha um modelo:");
+    scanf("%s", &searchModel);
+    printf("Procurando por modelo: \"%s\" \n\n", searchModel);
+
+    for( i = 0 ; i < carsSize ; i++){
+       if(!strcmp(cars[i].model , searchModel)){
+
+      printf("Veiculo: %s \n Modelo: %s \n Placa: %s \n Ano: %d \n\n  " , cars[i].brand , cars[i].model , cars[i].plate ,cars[i].year);
+        count++;
+       }
+    }
+     if (count == 0)    {
+       printf("\n nao temos este modelo\n");
+    }
+    else    {
+        count = 0;
+    }
+
 }
 
 
+
+
+//void pesquisarModelo(cadastroV cadastro[], int cod) {
+//    char modelo[20];
+//    int i = 0;
+//    printf("Digite o modelo\n");
+//    scanf("%s", &modelo);
+//    printf("\n\tLISTA DE VEICULOS\n");
+//    printf("---------------------------------");
+
+//    for (int i = 0; i < cod; i++)
+//    {
+//        if (strcmp(cadastro[i].modelo, strlwr(modelo)) == 0)
+//        {
+//            printf("\n A marca do veículo é: %s", cadastro[i].marca);
+//            printf("\n O modelo do veículo é: %s", cadastro[i].modelo);
+//            printf("\n O ano do veículo é: %d", cadastro[i].ano);
+//            printf("\n A placa do veículo é: %s", cadastro[i].placa);
+//            printf("\n---------------------------------");
+//            count++;
+//        }
+//    }
+//    if (count == 0)
+//    {
+//        printf("\n\tMODELO NÃO ENCONTRADO\n");
+//    }
+//    else
+//    {
+//        count = 0;
+//    }
+//}
+
     //***********menu*********//
-int getChoice()
-{
+int getChoice(){
     int choice;
     printf("\n 1 - Listar veiculos");
     printf("\n 2 - Cadastra veiculo");
@@ -199,24 +316,23 @@ int getChoice()
     printf("\n 4 - Listar veiculos a partir de ano");
     printf("\n 5 - Listar veiculos por modelo");
     printf("\n 0 - Sair ");
-    printf("\n escolha uma opção numerica ");
+    printf("\n escolha uma opcao numerica ");
     scanf("%d", &choice);
     return choice;
 }
 
-int main()
-{
+int main(){
 
 
     TP_CAR cars[10] = {};
     int carsSize = 0;
     int choice = getChoice();
+    char searchModel[20];
 
     while (choice != 0)
     {
         printf("%d\n", carsSize);
-        switch (choice)
-        {
+        switch (choice) {
 
             //lista veiculos cadastrados
             case 1:
@@ -240,6 +356,8 @@ int main()
             case 5:
                 showVehiclesByModel(cars, carsSize);
                 break;
+
+
         }
 
         choice = getChoice();
