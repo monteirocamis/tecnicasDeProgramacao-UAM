@@ -5,16 +5,16 @@
 <br/>
   
 - ✔️ unid 1 <br/>
-  - [ ] A1 <br/>
+  - [✔️] A1 <br/>
 
   
 - 🚧 unid 2 <br/>
    - [ ] A2 <br/>
   
--  unid 3 <br/>
+-  🚧 unid 3 <br/>
    - [ ] A3 <br/>
 
--  unid 4 <br/>
+- 🚧  unid 4 <br/>
    - [ ] A4 <br/>
 
  <br/>
